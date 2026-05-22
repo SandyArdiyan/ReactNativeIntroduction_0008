@@ -10,7 +10,7 @@ export default function LoginScreen() {
   const handleLogin = () => {
     // Berpindah ke dashboard sambil melempar parameter username
     router.push({
-      pathname: '/dashboard',
+      pathname: '/sandy',
       params: { username: username || 'alex' }
     });
   };
