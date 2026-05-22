@@ -51,3 +51,15 @@ export default function LoginScreen() {
   );
 }
 
+const styles = StyleSheet.create({
+  container: { flex: 1, backgroundColor: '#FFFFFF' },
+  content: { flex: 1, paddingHorizontal: 24, justifyContent: 'center' },
+  headerContainer: { marginBottom: 40 },
+  title: { fontSize: 28, fontWeight: 'bold', color: '#1E3A8A', marginBottom: 8 },
+  subtitle: { fontSize: 14, color: '#6B7280' },
+  formContainer: { backgroundColor: '#FFFFFF', padding: 20, borderRadius: 16, shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.05, shadowRadius: 15, elevation: 3 },
+  label: { fontSize: 12, fontWeight: '600', color: '#374151', marginBottom: 8, marginTop: 12 },
+  input: { borderBottomWidth: 1, borderBottomColor: '#3B82F6', paddingVertical: 8, fontSize: 16, color: '#111827', marginBottom: 16 },
+  loginButton: { backgroundColor: '#3B82F6', paddingVertical: 14, borderRadius: 8, alignItems: 'center', marginTop: 20 },
+  loginButtonText: { color: '#FFFFFF', fontWeight: 'bold', fontSize: 16 },
+});
