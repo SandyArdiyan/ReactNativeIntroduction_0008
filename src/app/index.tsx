@@ -1,96 +1,65 @@
-import { Link } from 'expo-router';
-import { StyleSheet, Text, TextInput, View } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, SafeAreaView } from 'react-native';
+import { useRouter } from 'expo-router';
 
-export default function Index() {
+export default function LoginScreen() {
+  const router = useRouter();
+  const [username, setUsername] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+
+  const handleLogin = () => {
+    // Berpindah ke dashboard sambil melempar parameter username
+    router.push({
+      pathname: '/sandy',
+      params: { username: username || 'alex' }
+    });
+  };
+
   return (
-    <View style={styles.container}>
-      <View style={styles.card}>
-        <Text style={styles.title}>Halo Sandy</Text>
-        <Text style={styles.subtitle}>Silakan isi nama pada form di bawah ini.</Text>
+    <SafeAreaView style={styles.container}>
+      <View style={styles.content}>
+        <View style={styles.headerContainer}>
+          <Text style={styles.title}>Selamat Datang</Text>
+          <Text style={styles.subtitle}>Silakan masuk ke akun Anda</Text>
+        </View>
 
-        <Link href="/contoh">
-          <Text style={styles.link}>Halaman Contoh</Text>
-        </Link>
+        <View style={styles.formContainer}>
+          <Text style={styles.label}>Username / Email</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="alex"
+            value={username}
+            onChangeText={setUsername}
+            autoCapitalize="none"
+          />
 
-        <Text style={styles.label}>Nama</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Masukkan nama"
-        />
+          <Text style={styles.label}>Password</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="••••••"
+            value={password}
+            onChangeText={setPassword}
+            secureTextEntry
+          />
 
-        <Text style={styles.label}>Email</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Masukkan email"
-          keyboardType="email-address"
-          autoCapitalize="none"
-        />
-
-        <Text style={styles.label}>Password</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Masukkan password"
-          secureTextEntry
-          autoCapitalize="none"
-        />
+          <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
+            <Text style={styles.loginButtonText}>Login</Text>
+          </TouchableOpacity>
+        </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 20,
-    justifyContent: 'center',
-    backgroundColor: '#fff',
-  },
-  card: {
-    width: '100%',
-    padding: 24,
-    borderRadius: 20,
-    backgroundColor: '#fff',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 6 },
-    shadowOpacity: 0.08,
-    shadowRadius: 12,
-    elevation: 8,
-  },
-  title: {
-    fontSize: 26,
-    fontWeight: '700',
-    marginBottom: 8,
-    color: '#111',
-  },
-  subtitle: {
-    fontSize: 14,
-    color: '#666',
-    marginBottom: 20,
-  },
-  label: {
-    fontSize: 15,
-    marginTop: 16,
-    marginBottom: 8,
-    color: '#444',
-  },
-  input: {
-    width: '100%',
-    borderWidth: 1,
-    borderColor: '#e0e0e0',
-    borderRadius: 12,
-    paddingHorizontal: 14,
-    paddingVertical: 14,
-    fontSize: 16,
-    backgroundColor: '#f7f7fb',
-  },
-  link: {
-    color: '#1e90ff',
-    fontSize: 16,
-    marginBottom: 22,
-    textDecorationLine: 'underline',
-  },
+  container: { flex: 1, backgroundColor: '#FFFFFF' },
+  content: { flex: 1, paddingHorizontal: 24, justifyContent: 'center' },
+  headerContainer: { marginBottom: 40 },
+  title: { fontSize: 28, fontWeight: 'bold', color: '#1E3A8A', marginBottom: 8 },
+  subtitle: { fontSize: 14, color: '#6B7280' },
+  formContainer: { backgroundColor: '#FFFFFF', padding: 20, borderRadius: 16, shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.05, shadowRadius: 15, elevation: 3 },
+  label: { fontSize: 12, fontWeight: '600', color: '#374151', marginBottom: 8, marginTop: 12 },
+  input: { borderBottomWidth: 1, borderBottomColor: '#3B82F6', paddingVertical: 8, fontSize: 16, color: '#111827', marginBottom: 16 },
+  loginButton: { backgroundColor: '#3B82F6', paddingVertical: 14, borderRadius: 8, alignItems: 'center', marginTop: 20 },
+  loginButtonText: { color: '#FFFFFF', fontWeight: 'bold', fontSize: 16 },
 });
-
-
-
-
